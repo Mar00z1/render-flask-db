@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: edubot-web
+    runtime: python
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: edubot-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: OPENAI_API_KEY
+        sync: false  # Debes configurar esto manualmente en el dashboard de Render
+databases:
+  - name: edubot-db
+    databaseName: edubot
+    user: edubot_user
+    plan: free  # Puedes cambiar a un plan pago si necesitas más recursos
