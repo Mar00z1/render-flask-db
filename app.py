@@ -14,7 +14,7 @@ from flask_login import (
     logout_user, current_user
 )
 from flask_wtf.csrf import CSRFProtect
-from werkzeug.security import url_has_allowed_host_and_scheme  # Reemplazo para is_safe_url
+from werkzeug.urls import url_has_allowed_host_and_scheme  # Reemplazo para is_safe_url
 from datetime import datetime
 from sqlalchemy import text
 
